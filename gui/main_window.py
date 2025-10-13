@@ -74,6 +74,11 @@ class MainWindow(QMainWindow):
         self.feedback_label.setWordWrap(True)
         layout.addWidget(self.feedback_label)
 
+        self.last_feedback_label = QLabel("", self)
+        self.last_feedback_label.setWordWrap(True)
+        self.last_feedback_label.setStyleSheet("font-weight: bold; font-size: 16px;")
+        layout.addWidget(self.last_feedback_label)
+
         self.check_button = QPushButton("Check Move", self)
         self.check_button.clicked.connect(self.on_check_move)
         layout.addWidget(self.check_button)
@@ -224,7 +229,7 @@ class MainWindow(QMainWindow):
         if self.current_card is None:
             return
         self.trainer.record_manual_grade(self.current_card.fen, grade=5)
-        self.feedback_label.setText("Marked as correct.")
+        self.last_feedback_label.setText("Marked as correct.")
         self.srs.save()
         self.load_next_card()
 
@@ -236,7 +241,7 @@ class MainWindow(QMainWindow):
         else:
             provided = result.provided_move or "(invalid move)"
             detail = f"Expected: {expected_moves}. You played: {provided}."
-        self.feedback_label.setText(f"{message}\n{detail}")
+        self.last_feedback_label.setText(f"{message}\n{detail}")
         self.srs.save()
         if result.next_fen:
             self.trainer.sync_with_repertoire()
