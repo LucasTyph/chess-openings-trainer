@@ -67,6 +67,7 @@ class MainWindow(QMainWindow):
 
         self.move_input = QLineEdit(self)
         self.move_input.setPlaceholderText("Enter your move in SAN (e.g. Nf3) or UCI (e2e4)")
+        self.move_input.returnPressed.connect(self.on_check_move)
         layout.addWidget(self.move_input)
 
         self.feedback_label = QLabel("", self)
