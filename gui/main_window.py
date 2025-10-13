@@ -28,13 +28,17 @@ from .dialogs import StatsDialog
 
 
 class MainWindow(QMainWindow):
-    def __init__(self, repertoire: RepertoireManager, srs: SRSManager, trainer: Trainer, data_dir: Path) -> None:
+    def __init__(self, srs: SRSManager, trainer: Trainer, data_dir: Path) -> None:
         super().__init__()
-        self.repertoire = repertoire
+        # Use two separate repertoire files for white and black
+        self.white_repertoire_path = data_dir / "repertoire_white.json"
+        self.black_repertoire_path = data_dir / "repertoire_black.json"
+        self.repertoire = RepertoireManager(self.white_repertoire_path, self.black_repertoire_path)
         self.srs = srs
         self.trainer = trainer
         self.data_dir = data_dir
         self.current_card: Optional[Card] = None
+        self.training_side = "white"  # default side to train
 
         self.setWindowTitle("Chess Opening Trainer")
         self.resize(720, 820)
@@ -85,6 +89,10 @@ class MainWindow(QMainWindow):
         self.skip_button.clicked.connect(self.load_next_card)
         layout.addWidget(self.skip_button)
 
+        self.switch_side_button = QPushButton("Switch Training Side", self)
+        self.switch_side_button.clicked.connect(self.set_training_side)
+        layout.addWidget(self.switch_side_button)
+
         self.setCentralWidget(central)
 
     def _create_actions(self) -> None:
@@ -129,13 +137,26 @@ class MainWindow(QMainWindow):
         if not filename:
             return
         path = Path(filename)
+        # Ask user which side to import for
+        side, ok = self._ask_side_dialog("Which side is this PGN for?")
+        if not ok:
+            return
         try:
-            games = self.repertoire.import_pgn(path)
-            self.statusBar().showMessage(f"Imported {games} games from {path.name}")
-        except Exception as exc:  # noqa: BLE001 - show error to user
+            if side == "white":
+                games = self.repertoire.import_pgn_white(path)
+            else:
+                games = self.repertoire.import_pgn_black(path)
+            self.statusBar().showMessage(f"Imported {games} games for {side} from {path.name}")
+        except Exception as exc:
             QMessageBox.critical(self, "Import Error", f"Failed to import PGN: {exc}")
             return
         self.refresh_state()
+
+    def _ask_side_dialog(self, prompt: str):
+        from PyQt5.QtWidgets import QInputDialog
+        sides = ["white", "black"]
+        side, ok = QInputDialog.getItem(self, "Select Side", prompt, sides, 0, False)
+        return side, ok
 
     def export_repertoire(self) -> None:
         filename, _ = QFileDialog.getSaveFileName(self, "Export Repertoire", str(self.data_dir / "repertoire_export.json"), "JSON Files (*.json)")
@@ -171,22 +192,28 @@ class MainWindow(QMainWindow):
         self.forgot_button.setEnabled(True)
         self.correct_button.setEnabled(True)
         self.board.refresh(card.fen)
-        self.position_label.setText(f"Current position FEN: {card.fen}")
+        self.position_label.setText(f"Current position FEN: {card.fen} | Training side: {self.training_side}")
         self.feedback_label.setText("Enter your prepared move and press 'Check Move'.")
         self.move_input.clear()
         self.move_input.setFocus()
+
+    def set_training_side(self):
+        side, ok = self._ask_side_dialog("Which side do you want to train?")
+        if ok:
+            self.training_side = side
+            self.load_next_card()
 
     def on_check_move(self) -> None:
         if self.current_card is None:
             return
         move_text = self.move_input.text()
-        result = self.trainer.grade_answer(self.current_card.fen, move_text)
+        result = self.trainer.grade_answer(self.current_card.fen, move_text, self.training_side)
         self._handle_training_result(result)
 
     def on_mark_incorrect(self) -> None:
         if self.current_card is None:
             return
-        result = self.trainer.grade_answer(self.current_card.fen, "", success_grade=5, failure_grade=1)
+        result = self.trainer.grade_answer(self.current_card.fen, "", self.training_side, success_grade=5, failure_grade=1)
         self._handle_training_result(result, override_message="Marked as incorrect. Review the expected move.")
 
     def on_mark_correct(self) -> None:
