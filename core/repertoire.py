@@ -76,8 +76,23 @@ class RepertoireManager:
                 board.push(move)
 
     def add_game(self, game: chess.pgn.Game, side: str) -> None:
-        board = game.board()
-        self.add_line(board, game.mainline_moves(), side)
+        def add_variation(board: chess.Board, node: chess.pgn.GameNode):
+            # Add moves for the relevant side at this node
+            if node.move is not None:
+                if (side == "white" and board.turn) or (side == "black" and not board.turn):
+                    fen_before = board.fen()
+                    san_move = board.san(node.move)
+                    board.push(node.move)
+                    fen_after = board.fen()
+                    tree = self._white_tree if side == "white" else self._black_tree
+                    tree.setdefault(fen_before, {})[san_move] = fen_after
+                else:
+                    board.push(node.move)
+            # Recursively add all variations
+            for variation in node.variations:
+                add_variation(board.copy(), variation)
+
+        add_variation(game.board(), game)
 
     def import_pgn_white(self, source: Path) -> int:
         """Import a PGN file and merge it into the white repertoire."""
