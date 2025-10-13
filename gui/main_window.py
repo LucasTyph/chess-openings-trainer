@@ -176,7 +176,7 @@ class MainWindow(QMainWindow):
         dialog.exec_()
 
     def load_next_card(self) -> None:
-        card = self.trainer.next_card()
+        card = self.trainer.next_card(self.training_side)
         self.current_card = card
         self._latest_stats = self.srs.statistics()
         self._update_summary_labels()
@@ -204,7 +204,6 @@ class MainWindow(QMainWindow):
         side, ok = self._ask_side_dialog("Which side do you want to train?")
         if ok:
             self.training_side = side
-            self.board.set_flipped(self.training_side == "black")
             self.load_next_card()
 
     def on_check_move(self) -> None:

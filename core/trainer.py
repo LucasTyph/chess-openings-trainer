@@ -36,8 +36,14 @@ class Trainer:
             self.srs.get(fen)
         self.srs.remove_cards(all_fens)
 
-    def next_card(self, today: Optional[date] = None) -> Optional[Card]:
-        return self.srs.next_due(today=today)
+    def next_card(self, side: str, today: Optional[date] = None) -> Optional[Card]:
+        # Only show cards for the selected side
+        if side == "white":
+            allowed_fens = set(self.repertoire.white_tree.keys())
+        else:
+            allowed_fens = set(self.repertoire.black_tree.keys())
+        cards = [card for card in self.srs.due_cards(today=today) if card.fen in allowed_fens]
+        return cards[0] if cards else None
 
     def available_moves(self, fen: str, side: str) -> Dict[str, str]:
         moves = self.repertoire.get_available_moves(fen, side)
