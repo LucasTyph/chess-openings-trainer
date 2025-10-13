@@ -34,6 +34,7 @@ class MainWindow(QMainWindow):
         self.white_repertoire_path = data_dir / "repertoire_white.json"
         self.black_repertoire_path = data_dir / "repertoire_black.json"
         self.repertoire = RepertoireManager(self.white_repertoire_path, self.black_repertoire_path)
+        self.repertoire.load()
         self.srs = srs
         self.trainer = trainer
         self.data_dir = data_dir
