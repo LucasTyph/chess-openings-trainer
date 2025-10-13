@@ -179,6 +179,8 @@ class MainWindow(QMainWindow):
         self.current_card = card
         self._latest_stats = self.srs.statistics()
         self._update_summary_labels()
+        # Flip board if training side is black
+        self.board.set_flipped(self.training_side == "black")
         if card is None:
             self.board.refresh(chess.STARTING_BOARD_FEN)
             self.feedback_label.setText("No cards due for review. Import a PGN or wait until the next review date.")
@@ -201,6 +203,7 @@ class MainWindow(QMainWindow):
         side, ok = self._ask_side_dialog("Which side do you want to train?")
         if ok:
             self.training_side = side
+            self.board.set_flipped(self.training_side == "black")
             self.load_next_card()
 
     def on_check_move(self) -> None:
