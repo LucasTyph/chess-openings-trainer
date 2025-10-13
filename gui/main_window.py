@@ -254,6 +254,5 @@ class MainWindow(QMainWindow):
         )
 
     def closeEvent(self, event) -> None:  # noqa: N802 - PyQt API
-        self.repertoire.save()
         self.srs.save()
         super().closeEvent(event)
