@@ -25,10 +25,11 @@ def main(argv: list[str] | None = None) -> int:
 
     base_dir = Path(__file__).resolve().parent
     data_dir = args.data_dir.resolve()
-    repertoire_path = data_dir / "repertoire.json"
+    white_repertoire_path = data_dir / "repertoire_white.json"
+    black_repertoire_path = data_dir / "repertoire_black.json"
     srs_path = data_dir / "srs_state.json"
 
-    repertoire = RepertoireManager(repertoire_path)
+    repertoire = RepertoireManager(white_repertoire_path, black_repertoire_path)
     repertoire.load()
 
     srs_manager = SRSManager(srs_path)
@@ -38,7 +39,7 @@ def main(argv: list[str] | None = None) -> int:
     trainer.sync_with_repertoire()
 
     app = QApplication(sys.argv)
-    window = MainWindow(repertoire, srs_manager, trainer, data_dir)
+    window = MainWindow(srs_manager, trainer, data_dir)
     window.show()
     return app.exec_()
 

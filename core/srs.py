@@ -93,7 +93,8 @@ class SRSManager:
 
     def get(self, fen: str) -> Card:
         if fen not in self._cards:
-            self._cards[fen] = Card(fen=fen)
+            # New card: set due date to today
+            self._cards[fen] = Card(fen=fen, due=date.today())
         return self._cards[fen]
 
     def schedule(self, fen: str, grade: int, today: Optional[date] = None) -> Card:

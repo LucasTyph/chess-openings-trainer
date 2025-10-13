@@ -20,7 +20,7 @@ PIECE_SYMBOLS = {
 LIGHT_COLOR = QColor(240, 217, 181)
 DARK_COLOR = QColor(181, 136, 99)
 HIGHLIGHT_COLOR = QColor(246, 246, 105)
-FONT = QFont("Sans Serif", 24)
+FONT = QFont("DejaVu Sans", 36)
 
 
 class BoardWidget(QTableWidget):
@@ -36,7 +36,14 @@ class BoardWidget(QTableWidget):
             self.setRowHeight(i, 64)
         self._current_fen: Optional[str] = None
         self._last_highlight: Optional[Iterable[int]] = None
+        self._flipped: bool = False
         self.refresh(chess.STARTING_BOARD_FEN)
+
+    def set_flipped(self, flipped: bool) -> None:
+        self._flipped = flipped
+        # Refresh board with current FEN to apply orientation
+        if self._current_fen:
+            self.refresh(self._current_fen)
 
     def refresh(self, fen: str, highlight: Optional[Iterable[chess.Square]] = None) -> None:
         board = chess.Board(fen)
@@ -44,7 +51,10 @@ class BoardWidget(QTableWidget):
         highlight = set(highlight or [])
         for row in range(8):
             for col in range(8):
-                square = chess.square(col, 7 - row)
+                # Flip board if needed
+                display_row = 7 - row if not self._flipped else row
+                display_col = col if not self._flipped else 7 - col
+                square = chess.square(display_col, display_row)
                 piece = board.piece_at(square)
                 item = QTableWidgetItem()
                 if piece:
