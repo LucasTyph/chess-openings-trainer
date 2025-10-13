@@ -146,6 +146,7 @@ class MainWindow(QMainWindow):
                 games = self.repertoire.import_pgn_white(path)
             else:
                 games = self.repertoire.import_pgn_black(path)
+            self.repertoire.save()
             self.statusBar().showMessage(f"Imported {games} games for {side} from {path.name}")
         except Exception as exc:
             QMessageBox.critical(self, "Import Error", f"Failed to import PGN: {exc}")
