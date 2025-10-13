@@ -80,7 +80,17 @@ class Trainer:
             )
 
         normalized = self._normalize_move(fen, move_text)
-        if normalized and normalized in available:
+        if normalized is None:
+            # Illegal move: prompt user to try again, don't mark as incorrect or advance
+            return TrainingResult(
+                fen=fen,
+                success=False,
+                expected_moves=available,
+                provided_move=None,
+                next_fen=None,
+                message="Illegal move. Please try again.",
+            )
+        if normalized in available:
             next_fen = available[normalized]
             self.srs.schedule(fen, grade=success_grade)
             return TrainingResult(

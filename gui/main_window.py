@@ -247,7 +247,9 @@ class MainWindow(QMainWindow):
         if result.next_fen:
             self.trainer.sync_with_repertoire()
         self._latest_stats = self.srs.statistics()
-        self.load_next_card()
+        # Only advance if not an illegal move
+        if message != "Illegal move. Please try again.":
+            self.load_next_card()
 
     def _update_summary_labels(self) -> None:
         stats = self._latest_stats
