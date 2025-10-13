@@ -146,6 +146,7 @@ class MainWindow(QMainWindow):
                 games = self.repertoire.import_pgn_white(path)
             else:
                 games = self.repertoire.import_pgn_black(path)
+            self.repertoire.save()
             self.statusBar().showMessage(f"Imported {games} games for {side} from {path.name}")
         except Exception as exc:
             QMessageBox.critical(self, "Import Error", f"Failed to import PGN: {exc}")
@@ -175,7 +176,7 @@ class MainWindow(QMainWindow):
         dialog.exec_()
 
     def load_next_card(self) -> None:
-        card = self.trainer.next_card()
+        card = self.trainer.next_card(self.training_side)
         self.current_card = card
         self._latest_stats = self.srs.statistics()
         self._update_summary_labels()
@@ -203,7 +204,6 @@ class MainWindow(QMainWindow):
         side, ok = self._ask_side_dialog("Which side do you want to train?")
         if ok:
             self.training_side = side
-            self.board.set_flipped(self.training_side == "black")
             self.load_next_card()
 
     def on_check_move(self) -> None:
@@ -253,6 +253,5 @@ class MainWindow(QMainWindow):
         )
 
     def closeEvent(self, event) -> None:  # noqa: N802 - PyQt API
-        self.repertoire.save()
         self.srs.save()
         super().closeEvent(event)

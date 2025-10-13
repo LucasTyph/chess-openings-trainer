@@ -1,1 +1,178 @@
-{}
+{
+  "r1bq1rk1/pp2ppbp/2np1np1/8/3P1B2/2PB1N2/PP1N1PPP/R2Q1RK1 b - - 7 9": {
+    "due": "2025-10-14",
+    "ease": 2.6,
+    "interval": 1,
+    "last_grade": 5,
+    "last_reviewed": "2025-10-13",
+    "repetitions": 1
+  },
+  "r1bq1rk1/pp3pbp/2n2np1/4N3/5B2/2PB4/PP1N1PPP/R2Q1RK1 b - - 0 11": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  },
+  "r1bq1rk1/pp3pbp/2np1np1/4P3/5B2/2PB1N2/PP1N1PPP/R2Q1RK1 b - - 0 10": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  },
+  "r1bq1rk1/pp3pbp/5np1/4B3/8/2PB4/PP1N1PPP/R2Q1RK1 b - - 0 12": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  },
+  "rnb1kb1r/ppppqppp/5n2/4P3/5p2/2N5/PPPP2PP/R1BQKBNR w KQkq - 1 5": {
+    "due": "2025-10-14",
+    "ease": 2.6,
+    "interval": 1,
+    "last_grade": 5,
+    "last_reviewed": "2025-10-13",
+    "repetitions": 1
+  },
+  "rnb1kbnr/ppp1qppp/3p4/4P3/5p2/2N2N2/PPPPQ1PP/R1B1KB1R w KQkq - 0 7": {
+    "due": "2025-10-14",
+    "ease": 2.6,
+    "interval": 1,
+    "last_grade": 5,
+    "last_reviewed": "2025-10-13",
+    "repetitions": 1
+  },
+  "rnb1kbnr/ppppqppp/8/4P3/5p2/2N5/PPPPQ1PP/R1B1KBNR w KQkq - 3 6": {
+    "due": "2025-10-14",
+    "ease": 2.5,
+    "interval": 1,
+    "last_grade": 1,
+    "last_reviewed": "2025-10-13",
+    "repetitions": 0
+  },
+  "rnb1kbnr/pppq1ppp/3p4/3NP3/5p2/5N2/PPPPQ1PP/R1B1KB1R w KQkq - 2 8": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  },
+  "rnbk1bnr/pppq1ppp/3P4/3N4/5p2/5N2/PPPPQ1PP/R1B1KB1R w KQ - 1 9": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  },
+  "rnbk1bnr/ppq2ppp/8/3N4/5p2/5N2/PPPPQ1PP/R1B1KB1R w KQ - 0 10": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  },
+  "rnbq1rk1/pp2ppbp/3p1np1/8/3P1B2/2PB1N2/PP1N1PPP/R2QK2R b KQ - 5 8": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  },
+  "rnbqk2r/pp2ppbp/3p1np1/8/3P1B2/2PB1N2/PP3PPP/RN1QK2R b KQkq - 3 7": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  },
+  "rnbqkb1r/pp1ppppp/5n2/2p5/3P1B2/4P3/PPP2PPP/RN1QKBNR b KQkq - 0 3": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  },
+  "rnbqkb1r/pp1ppppp/5n2/8/3P1B2/8/PPP2PPP/RN1QKBNR b KQkq - 0 4": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  },
+  "rnbqkb1r/pp2pp1p/3p1np1/8/3P1B2/2P2N2/PP3PPP/RN1QKB1R b KQkq - 1 6": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  },
+  "rnbqkb1r/pp2pppp/3p1n2/8/3P1B2/2P5/PP3PPP/RN1QKBNR b KQkq - 0 5": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  },
+  "rnbqkb1r/pppp1ppp/5n2/4p3/4P3/2N5/PPPP1PPP/R1BQKBNR w KQkq - 2 3": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  },
+  "rnbqkb1r/pppp1ppp/5n2/8/4Pp2/2N5/PPPP2PP/R1BQKBNR w KQkq - 0 4": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  },
+  "rnbqkb1r/pppppppp/5n2/8/3P1B2/8/PPP1PPPP/RN1QKBNR b KQkq - 2 2": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  },
+  "rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  },
+  "rnbqkbnr/pppppppp/8/8/3P4/8/PPP1PPPP/RNBQKBNR b KQkq - 0 1": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  },
+  "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1": {
+    "due": "2025-10-13",
+    "ease": 2.5,
+    "interval": 0,
+    "last_grade": null,
+    "last_reviewed": null,
+    "repetitions": 0
+  }
+}
