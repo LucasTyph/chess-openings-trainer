@@ -37,8 +37,8 @@ class Trainer:
     def next_card(self, today: Optional[date] = None) -> Optional[Card]:
         return self.srs.next_due(today=today)
 
-    def available_moves(self, fen: str) -> Dict[str, str]:
-        moves = self.repertoire.get_available_moves(fen)
+    def available_moves(self, fen: str, side: str) -> Dict[str, str]:
+        moves = self.repertoire.get_available_moves(fen, side)
         return dict(sorted(moves.items()))
 
     def _normalize_move(self, fen: str, move_text: str) -> Optional[str]:
@@ -59,8 +59,8 @@ class Trainer:
             return None
         return board.san(move)
 
-    def grade_answer(self, fen: str, move_text: str, success_grade: int = 5, failure_grade: int = 1) -> TrainingResult:
-        available = self.available_moves(fen)
+    def grade_answer(self, fen: str, move_text: str, side: str, success_grade: int = 5, failure_grade: int = 1) -> TrainingResult:
+        available = self.available_moves(fen, side)
         if not available:
             return TrainingResult(
                 fen=fen,
