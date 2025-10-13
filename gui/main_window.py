@@ -42,7 +42,7 @@ class MainWindow(QMainWindow):
         self.training_side = "white"  # default side to train
 
         self.setWindowTitle("Chess Opening Trainer")
-        self.resize(720, 820)
+        self.resize(540, 880)
         self._build_ui()
         self._create_actions()
         self._create_menus()
@@ -155,6 +155,8 @@ class MainWindow(QMainWindow):
                 games = self.repertoire.import_pgn_black(path)
             self.repertoire.save()
             self.repertoire.load()  # Reload repertoire from disk
+            # Re-instantiate Trainer to use updated repertoire
+            self.trainer = Trainer(self.repertoire, self.srs)
             self.statusBar().showMessage(f"Imported {games} games for {side} from {path.name}")
         except Exception as exc:
             QMessageBox.critical(self, "Import Error", f"Failed to import PGN: {exc}")
