@@ -65,11 +65,15 @@ class RepertoireManager:
     def add_line(self, board: chess.Board, moves: Iterable[chess.Move], side: str) -> None:
         tree = self._white_tree if side == "white" else self._black_tree
         for move in moves:
-            fen_before = board.fen()
-            san_move = board.san(move)
-            board.push(move)
-            fen_after = board.fen()
-            tree.setdefault(fen_before, {})[san_move] = fen_after
+            # Only save moves for the relevant side
+            if (side == "white" and board.turn) or (side == "black" and not board.turn):
+                fen_before = board.fen()
+                san_move = board.san(move)
+                board.push(move)
+                fen_after = board.fen()
+                tree.setdefault(fen_before, {})[san_move] = fen_after
+            else:
+                board.push(move)
 
     def add_game(self, game: chess.pgn.Game, side: str) -> None:
         board = game.board()
