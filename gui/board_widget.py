@@ -20,7 +20,7 @@ PIECE_SYMBOLS = {
 LIGHT_COLOR = QColor(240, 217, 181)
 DARK_COLOR = QColor(181, 136, 99)
 HIGHLIGHT_COLOR = QColor(246, 246, 105)
-FONT = QFont("Sans Serif", 24)
+FONT = QFont("DejaVu Sans", 36)
 
 
 class BoardWidget(QTableWidget):
