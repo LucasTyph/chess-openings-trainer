@@ -42,7 +42,7 @@ class MainWindow(QMainWindow):
         self.training_side = "white"  # default side to train
 
         self.setWindowTitle("Chess Opening Trainer")
-        self.resize(540, 880)
+        self.resize(540, 890)
         self._build_ui()
         self._create_actions()
         self._create_menus()

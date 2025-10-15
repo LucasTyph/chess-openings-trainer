@@ -105,6 +105,7 @@ class SRSManager:
         if grade < 3:
             card.repetitions = 0
             card.interval = 1
+            card.due = today  # Repeat missed move today
         else:
             if card.repetitions == 0:
                 card.interval = 1
@@ -114,7 +115,7 @@ class SRSManager:
                 card.interval = int(round(card.interval * card.ease)) or 1
             card.repetitions += 1
             card.ease = max(MIN_EASE, card.ease + 0.1 - (5 - grade) * 0.08)
-        card.due = today + timedelta(days=card.interval)
+            card.due = today + timedelta(days=card.interval)
         self._cards[fen] = card
         return card
 
