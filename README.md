@@ -33,6 +33,36 @@ A desktop app to practice chess openings through SRS (spaced repetition system).
 
 3. **Import a PGN** via *File → Import PGN* and start training. There are separate PGNs you can use for black or white pieces.
 
+## Windows Standalone Build
+
+You can build and run Chess Opening Trainer as a standalone Windows executable using PyInstaller:
+
+### Build Instructions
+
+1. Install Python 3.x and pip (for building only).
+2. Install PyInstaller:
+  ```bash
+  pip install pyinstaller
+  ```
+3. Run the build script:
+  ```bash
+  build_windows.bat
+  ```
+  The executable will be created in the `dist/` folder as `ChessOpeningTrainer.exe`.
+
+### Usage
+
+- Double-click `ChessOpeningTrainer.exe` to launch the app.
+- All your data (PGNs, training progress) will be saved in your user folder under `ChessOpeningTrainerData`.
+- No need for Python or dependencies on the target machine.
+
+### Troubleshooting
+
+- If you add new dependencies, re-run `pip install -r requirements.txt` before building.
+- If you use data files, they will be stored in your user folder for persistence.
+
+---
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for details.
