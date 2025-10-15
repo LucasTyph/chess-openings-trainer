@@ -35,5 +35,4 @@ A desktop app to practice chess openings through SRS (spaced repetition system).
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for details (add one if you
-plan to distribute the project).
+Distributed under the MIT License. See `LICENSE` for details.
